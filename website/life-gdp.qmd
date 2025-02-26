@@ -1,0 +1,49 @@
+---
+title: "Life Expectancy and GDP per Capita"
+execute:
+    echo: true
+    output: true
+---
+
+This page is about the analysis on the relationship between life expectancy and GDP per capita
+
+According to the graph below, it is clear that the higher the GDP per capita is, the longer the life expectancy is
+
+```{python}
+# Install packages
+# !pip install pandas gapminder
+
+# Import necessary libraries
+import pandas as pd
+from gapminder import gapminder
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'
+gapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',
+                                      'pop': 'population_millions', 
+                                      'gdpPercap': 'gdp_per_capita'})
+
+# Convert population to millions
+gapminder['population_millions'] = gapminder['population_millions'] / 1_000_000
+
+# Create a new pandas DataFrame from the modified gapminder data
+gapminder_df = pd.DataFrame(gapminder)
+```
+
+```{python}
+gapminder_df
+```
+
+```{python}
+data_2007 = gapminder[gapminder['year'] == 2007]
+
+# Create scatter plot of Life Expectancy vs. GDP per Capita
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=data_2007, x="gdp_per_capita", y="life_expectancy",  alpha=0.7)
+plt.title("Life Expectancy vs. GDP per Capita (2007)")
+plt.xlabel("GDP per Capita")
+plt.ylabel("Life Expectancy (years)")
+plt.grid(True, which="both", linestyle="--", linewidth=0.5)
+plt.show()
+```

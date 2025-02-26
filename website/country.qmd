@@ -1,0 +1,57 @@
+---
+title: Country Analysis
+execute:
+    echo: true
+    output: true
+---
+
+This page analyzes changes in **Life Expectancy**, **GDP per Capita**, and **Population** over time for a selected country from the **Gapminder dataset**. The graph below visualizes these trends. It is clear that all 3 elements show increasing trend overall.
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+from gapminder import gapminder
+
+# Rename 'lifeExp' to 'life_expectancy' and 'gdpPercap' to 'gdp_per_capita'
+gapminder = gapminder.rename(columns={'lifeExp': 'life_expectancy',
+                                      'pop': 'population_millions', 
+                                      'gdpPercap': 'gdp_per_capita'})
+
+# Convert population to millions
+gapminder['population_millions'] = gapminder['population_millions'] / 1_000_000
+
+# Create a new pandas DataFrame from the modified gapminder data
+gapminder_df = pd.DataFrame(gapminder)
+```
+
+```{python}
+gapminder_df
+```
+
+```{python}
+country_data = gapminder[gapminder["country"] == 'India']
+
+fig, ax1 = plt.subplots(figsize=(10, 6))
+ax1.plot(country_data["year"], country_data["life_expectancy"], marker="o", color="blue", label="Life Expectancy")
+ax1.set_ylabel("Life Expectancy (years)", color="blue")
+ax1.set_xlabel("Year")
+ax2 = ax1.twinx()
+ax2.plot(country_data["year"], country_data["gdp_per_capita"], marker="s", color="green", label="GDP per Capita")
+ax2.set_ylabel("GDP per Capita", color="green")
+
+ax3 = ax1.twinx()
+ax3.spines.right.set_position(("outward", 60))  
+ax3.plot(country_data["year"], country_data["population_millions"], marker="^", color="red", label="Population (scaled)")
+ax3.set_ylabel("Population (millions)", color="red")
+ax3.set_yticks([])
+
+plt.title(f"Trends in Life Expectancy, GDP per Capita, and Population for India")
+ax1.legend(loc="upper left")
+ax2.legend(loc="upper right")
+plt.show()
+
+```
+
+```{python}
+
+```

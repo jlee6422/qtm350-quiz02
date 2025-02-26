@@ -1,0 +1,12 @@
+---
+title: "Gapminder Data Analysis"
+format: html
+---
+
+The dataset that is used for this quiz is gapminder.csv and it contains 6 columns and 1,704 rows. The columns are: country, continent, year, life_expectancy, population_millions, and gdp_per_capita. The dataset contains information about these variables in 142 countries over the years 1952 to 2007, with a 5-year interval.
+
+- [About](about.qmd) - Learn more about the dataset.
+- [Life Expectancy and GDP per Capita](life-gdp.qmd) - Analysis of the relationship between life expectancy and GDP per capita.
+- [Life Expectancy and Population](life-population.qmd) - Analysis of the relationship between life expectancy and population.
+- [Country Analysis](country.qmd) - Trends in life expectancy, GDP per capita, and population for a selected country.
+- [Contact](contact.qmd) - Get in touch for questions or feedback.

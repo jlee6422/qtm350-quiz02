@@ -7,7 +7,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Gapminder Dataset
       - href: about.qmd
         text: About
       - href: life-gdp.qmd
@@ -24,7 +24,7 @@ website:
 format:
   html:
     theme: journal
-    css: styles.css
+    css: style.css
     toc: true
 
 
